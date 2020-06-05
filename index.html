@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tic-tac-toe</title>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Nunito:wght@700&display=swap" rel="stylesheet">  
+  <body>
+    <div id="heading">tic-tac-toe XO</div>
+    <div id="players">
+      <p class='player on'>Player X</p>
+      <p id='draw'></p>
+      <p class='player'>Player O</p>
+    </div>
+    <div id="grid-container">
+      <div id="grid">
+        <div class="square" id="0"></div>
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+      </div>
+    </div>
+    <div id="display"> 
+      <span class="options" id="reset">reset</span>
+      <span class="options" id="settings">settings</span>
+    </div>
 
+    <div id="modal">
+      <form id='menu'>
+        <div id='menu-title'>Settings</div>
+        <label for="player">Player </label>
+        <input type="text" id="playerX" name="player" placeholder= "Player X">
+        <input type="text" id="playerO" name="player" placeholder= "Player O">
+        <div id="submitContainer">
+          <div class="submit" id="cancel">Cancel</div>
+          <div class="submit" id="save"> Save</div>
+        </div>
+      </form>
+    </div>
+    
+    <script src="scripts.js"></script>
+  </body>
+</html>
