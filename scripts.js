@@ -1,17 +1,10 @@
 
-
-
-const player = document.querySelectorAll('.player');
-
-let playerX = 'Player X';
-let playerO = 'Player O';
-
 const gameBoard = (() => {
 
   const squares = document.querySelectorAll('.square');
   squares.forEach(square => square.addEventListener('click', updateBoard));
 
-  const draw = document.querySelector('#draw');
+  const player = document.querySelectorAll('.player');
   
   const reset = document.querySelector('#reset');
   reset.addEventListener('click', resetGame);
@@ -29,7 +22,7 @@ const gameBoard = (() => {
       for (let i=0; i < 9; i++){
         if (i == id && board[i] == '') {
           board[i] = marker;
-          round += 1;
+          round ++;
 
           renderBoard(i);
         }
@@ -56,7 +49,7 @@ const gameBoard = (() => {
   }
 
   function changeMarker() {
-    marker == 'O' ? marker = 'X' : marker = 'O'
+    marker = marker == 'O' ? 'X' : 'O'
   }
 
 
@@ -86,11 +79,13 @@ const gameBoard = (() => {
 
     
   function displayWin(type) {
+    const draw = document.querySelector('#draw');
+
     if (type == 'X') {
-      player[0].textContent = playerX + ' won!'
+      player[0].textContent = menu.getNames()[0] + ' won!'
     }
     else if (type == 'O') {
-      player[1].textContent = playerO + ' won!'
+      player[1].textContent = menu.getNames()[1] + ' won!'
     }
     else if (type == 'draw') {
       draw.textContent = '~Draw~';
@@ -98,13 +93,13 @@ const gameBoard = (() => {
       player.forEach(p => p.classList.remove('on'));
     }
     gameFinished = true;
-}
+  }
 
   function resetGame() {
     board = ['','','','','','','','',''];
 
-    player[0].textContent = 'Player X';
-    player[1].textContent = 'Player O';
+    player[0].textContent = menu.getNames()[0];
+    player[1].textContent = menu.getNames()[1];
     draw.textContent = '';
 
     player[0].classList.add('on');
@@ -121,15 +116,15 @@ const gameBoard = (() => {
 
 const menu = (() => {
 
+  const player = document.querySelectorAll('.player');
+
   const modal = document.querySelector('#modal');
 
   const settings = document.querySelector('#settings');
   settings.addEventListener('click', openMenu);
 
-  
   const cancel = document.querySelector('#cancel');
   cancel.addEventListener('click', closeMenu);
-
 
   const input = document.querySelectorAll("input");
   const save = document.querySelector('#save');
@@ -144,15 +139,27 @@ const menu = (() => {
     modal.style.display = 'block';
   }
 
+  let playerX = 'Player X';
+  let playerO = 'Player O';
+
   function playerNames() {
-    input[0].value !== '' ? playerX = input[0].value + ' X': false;
-    input[1].value !== '' ? playerO = input[1].value + ' O': false;
+
+    playerX = input[0].value !== '' ? input[0].value + ' X': 'Player X';
+    playerO = input[1].value !== '' ? input[1].value + ' O': 'Player O';
 
     player[0].textContent = playerX;
     player[1].textContent = playerO;
 
     closeMenu();
+  }
 
+  function getNames() {
+    return [playerX, playerO]
+  }
+
+
+  return {
+    getNames,
   }
 
 })();

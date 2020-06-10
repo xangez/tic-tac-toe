@@ -24,8 +24,8 @@ body {
   font-size: 40px;
   display: flex;
   margin: auto;
-  padding-top: 40px;
-  padding-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 10px;
   justify-content: center;
 }
 
